@@ -1,0 +1,337 @@
+/* Fontes: Playfair Display (títulos) e DM Sans (textos) */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap");
+
+/* ==========================================================
+   Paleta e variáveis
+   ========================================================== */
+:root {
+  --espresso: #2b1a12;
+  --mocha: #5a3a27;
+  --cafe: #6b4226;
+  --caramelo: #c68642;
+  --latte: #d9b99b;
+  --creme: #fbf5ec;
+  --espuma: #fffdf9;
+  --borda: #ead9c4;
+  --texto: #3e2c1c;
+  --texto-suave: #8a6f5a;
+  --alerta: #b4533a;
+  --alerta-fundo: #fbebe6;
+  --alerta-borda: #efc9bd;
+
+  --fonte-titulo: "Playfair Display", Georgia, serif;
+  --fonte-texto: "DM Sans", "Segoe UI", Roboto, sans-serif;
+
+  --sombra: 0 10px 30px rgba(43, 26, 18, 0.1);
+  --sombra-hover: 0 14px 28px rgba(43, 26, 18, 0.16);
+  --raio: 18px;
+}
+
+/* ==========================================================
+   Reset e base
+   ========================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: block; /* neutraliza estilos padrão do index.css do Vite */
+  min-height: 100vh;
+  font-family: var(--fonte-texto);
+  line-height: 1.5;
+  color: var(--texto);
+  background-color: var(--creme);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(198, 134, 66, 0.1), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(107, 66, 38, 0.08), transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Faz o rodapé ficar sempre no fim da tela */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+main {
+  flex: 1;
+  padding-bottom: 56px;
+}
+
+/* ==========================================================
+   Cabeçalho
+   ========================================================== */
+header {
+  background: linear-gradient(135deg, var(--espresso), var(--mocha));
+  color: var(--espuma);
+  text-align: center;
+  padding: 56px 20px 80px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+header h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+header h1::before {
+  content: "☕";
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 0.85em;
+}
+
+header p {
+  margin-top: 8px;
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--latte);
+}
+
+/* ==========================================================
+   Cartão do cardápio
+   ========================================================== */
+.cardapio {
+  position: relative;
+  width: min(92%, 760px);
+  margin: -40px auto 0; /* sobe um pouco sobre o cabeçalho */
+  padding: 36px;
+  background-color: var(--espuma);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.cardapio h1 {
+  text-align: center;
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  color: var(--espresso);
+}
+
+.cardapio hr {
+  border: none;
+  height: 2px;
+  margin: 18px 0 28px;
+  background: linear-gradient(90deg, transparent, var(--latte), transparent);
+}
+
+/* ==========================================================
+   Formulário
+   ========================================================== */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+form input {
+  flex: 1 1 180px;
+  padding: 12px 18px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--texto);
+  background-color: var(--creme);
+  border: 1.5px solid var(--borda);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+form input[type="number"] {
+  flex: 0 1 140px;
+}
+
+form input::placeholder {
+  color: var(--texto-suave);
+  opacity: 0.8;
+}
+
+form input:focus {
+  background-color: var(--espuma);
+  border-color: var(--caramelo);
+  box-shadow: 0 0 0 4px rgba(198, 134, 66, 0.2);
+}
+
+/* ==========================================================
+   Botões
+   ========================================================== */
+button {
+  padding: 11px 22px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--espuma);
+  background-color: var(--cafe);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+button:hover {
+  background-color: var(--caramelo);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(107, 66, 38, 0.25);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(198, 134, 66, 0.55);
+  outline-offset: 2px;
+}
+
+/* ==========================================================
+   Lista de pratos
+   ========================================================== */
+ul {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 22px;
+  text-align: center;
+  background-color: var(--espuma);
+  border: 1px solid var(--borda);
+  border-left: 6px solid var(--caramelo);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(43, 26, 18, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-hover);
+}
+
+.item :is(h2, h3, h4) {
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  color: var(--espresso);
+}
+
+/* Botões de ação dentro de cada prato (estilo contornado) */
+.item > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.item > div button {
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  color: var(--cafe);
+  background-color: transparent;
+  border: 1.5px solid var(--latte);
+  box-shadow: none;
+}
+
+.item > div button:hover {
+  color: var(--espuma);
+  background-color: var(--cafe);
+  border-color: var(--cafe);
+}
+
+/* "Remover" fica vermelho ao passar o mouse */
+.item > div button:last-child:hover {
+  background-color: var(--alerta);
+  border-color: var(--alerta);
+}
+
+/* Pratos indisponíveis */
+.indisponivel {
+  color: var(--alerta);
+  background-color: var(--alerta-fundo);
+  border-color: var(--alerta-borda);
+  border-left-color: var(--alerta);
+}
+
+.indisponivel :is(h2, h3, h4) {
+  color: inherit;
+}
+
+/* Cardápio vazio */
+.vazio {
+  padding: 32px 20px;
+  text-align: center;
+  font-style: italic;
+  color: var(--texto-suave);
+  background-color: var(--creme);
+  border: 2px dashed var(--borda);
+  border-radius: 14px;
+}
+
+/* ==========================================================
+   Rodapé
+   ========================================================== */
+footer {
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--latte);
+  background-color: var(--espresso);
+}
+
+footer p {
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================
+   Celular
+   ========================================================== */
+@media (max-width: 520px) {
+  header {
+    padding: 44px 16px 72px;
+  }
+
+  header h1 {
+    font-size: 2.1rem;
+  }
+
+  .cardapio {
+    width: 94%;
+    padding: 24px 16px;
+  }
+
+  .cardapio h1 {
+    font-size: 1.8rem;
+  }
+
+  form input,
+  form input[type="number"],
+  form button {
+    flex: 1 1 100%;
+  }
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

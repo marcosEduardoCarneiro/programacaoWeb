@@ -1,0 +1,57 @@
+Aqui eu pedi a IA me explicar alguns parâmetros e pontos que 
+dava para melhorar no meu JSX, e então ela sugeriu alguns desses
+pontos, ajudaram bastante e explica o porquê que foi usado e qual 
+funcionalidade elas possuem... yeahhhhh
+
+1. Import único: import { useState, useRef } from "react"
+
+Por quê: importar o mesmo nome duas vezes é erro.
+Função: useState guarda dados que, ao mudar, atualizam 
+a tela. useRef guarda um valor que persiste entre renderizações,
+mas não atualiza a tela quando muda.
+
+2. const proximoId = useRef(6) dentro do App
+
+Por quê: hooks só podem ser chamados dentro do componente. Fora dele, o código quebra.
+Função: é o seu contador de ids. O valor fica em proximoId.current. Como o id não aparece 
+na tela, não precisa de useState, e assim evitamos re-renderizações à toa.
+
+3. id: proximoId.current++ no adicionarPrato
+
+Por quê: substitui o crypto.randomUUID(). Agora todos os ids são números 
+(1, 2, 3... 6, 7, 8...), sem mistura de tipos.
+Função: usa o valor atual como id do novo prato e soma 1 para o próximo. 
+Fica fora do setCardapio de propósito: em modo de desenvolvimento, o React 
+pode executar a função de atualização duas vezes, o que pularia números.
+
+4. Validação do preço (isNaN e <= 0)
+
+Por quê: antes dava para cadastrar preço zero ou negativo.
+Função: converte o preço para número e só deixa cadastrar 
+se for um valor válido e maior que zero. Também adicionei 
+min="0" no input e .trim() no nome, para não salvar espaços
+sobrando.
+
+5. Atualização funcional: setCardapio((anterior) => ...)
+
+Por quê: é a forma mais segura de atualizar um estado com base no valor anterior. Evita
+bugs quando duas atualizações acontecem em sequência rápida.
+Função: o React entrega o valor mais recente da lista (anterior),
+ e você devolve a nova lista. Apliquei em adicionarPrato, removerPrato e alternarDisponibilidade.
+
+6. <p> virou <li> na mensagem de cardápio vazio
+
+Por quê: dentro de uma <ul> só devem existir <li>. Com <p>, o HTML fica inválido.
+Função: mostra “Nenhum prato no cardápio.” quando a lista está vazia. A classe vazio
+ continua a mesma.
+
+ 7. aria-label nos inputs
+
+Por quê: os campos só tinham placeholder, que some quando a pessoa digita e não 
+é lido direito por leitores de tela.
+Função: dá um nome acessível a cada campo sem mudar nada no visual.
+
+8. Formatação do JSX
+
+Arrumei a linha do input de preço que estava toda emendada (value = {preco} onChange ={
+    ...}placeholder=...). Funcionava, mas ficava difícil de ler.
