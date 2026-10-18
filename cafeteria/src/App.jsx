@@ -16,9 +16,7 @@ function App() {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState("");
 
-  // Contador de ids (começa em 6 porque os pratos iniciais vão de 1 a 5)
-  const proximoId = useRef(6); // hooks só podem ser chamados dentro do componente. Fora dele, o código quebra.
-// é o seu contador de ids. O valor fica em proximoId.current. Como o id não aparece na tela, não precisa de useState, e assim evitamos re-renderizações à toa.
+  const proximoId = useRef(6); 
 
   // Criar prato
   const adicionarPrato = (e) => {
@@ -26,11 +24,6 @@ function App() {
 
     const precoNumero = parseFloat(preco);
     if (nome.trim() === "" || isNaN(precoNumero) || precoNumero <= 0) return;
-//converte o preço para número e só deixa cadastrar se for um valor válido e maior que zero. Também adicionei min="0" no input e .trim() no nome, para não salvar espaços sobrando.
-
-// substitui o crypto.randomUUID(). Agora todos os ids são números (1, 2, 3... 6, 7, 8...), sem mistura de tipos.
-  // usa o valor atual como id do novo prato e soma 1 para o próximo. Fica fora do setCardapio de propósito: em modo
-  //  de desenvolvimento, o React pode executar a função de atualização duas vezes, o que pularia números.    
   const novoPrato = {
       id: proximoId.current++,
       nome: nome.trim(),
@@ -48,7 +41,7 @@ function App() {
     setCardapio((anterior) => anterior.filter((p) => p.id !== id));
   };
 
-  // Alternar disponibilidade
+  // Alternar a disponibilidade
   const alternarDisponibilidade = (id) => {
     setCardapio((anterior) =>
       anterior.map((p) =>
