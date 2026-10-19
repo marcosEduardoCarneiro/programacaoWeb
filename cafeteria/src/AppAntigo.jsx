@@ -40,15 +40,15 @@ function App() {
 
   // Remover prato
   const removerPrato = (id) => {
-    setCardapio((anterior) => anterior.filter((p) => p.id !== id));
+    setCardapio((anterior) => anterior.filter((p) => p.id !== id)); // Tipo um Slice
   };
 
   // Alternar disponibilidade
   const alternarDisponibilidade = (id) => {
     setCardapio((anterior) =>
       anterior.map((p) =>
-        p.id === id ? { ...p, disponivel: !p.disponivel } : p
-      )
+        p.id === id ? { ...p, disponivel: !p.disponivel } : p // Se bater no : p, só segue a vida
+      ) // ...p, disponivel: !p.disponivel. Aqui ele inverte, se era True ele vira False, e o contrário tbb.
     );
   };
 
